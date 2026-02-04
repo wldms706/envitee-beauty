@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>앙비떼 롯드 선정 진단기</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --pink: #FF1493;
+      --pink-light: #FF69B4;
+      --pink-pale: #FFB6C1;
+      --black-90: #1A1A1A;
+      --black-80: #333333;
+      --white: #FFFFFF;
+      --gray-medium: #CCCCCC;
+      --gray-dark: #666666;
+    }
+
+    body {
+      font-family: 'Pretendard', 'Apple SD Gothic Neo', -apple-system, sans-serif;
+      background: var(--black-90);
+      color: var(--white);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .wrap {
+      width: 100%;
+      max-width: 480px;
+      padding: 2rem 1.25rem 3rem;
+    }
+
+    /* Header */
+    .header { text-align: center; margin-bottom: 2.5rem; }
+    .header-brand { font-size: 0.875rem; color: var(--pink); letter-spacing: 0.05em; margin-bottom: 0.75rem; }
+    .header-title { font-size: 1.625rem; font-weight: 700; line-height: 1.3; }
+    .header-title span { color: var(--pink); }
+    .header-sub { font-size: 0.875rem; color: var(--gray-dark); margin-top: 0.5rem; }
+
+    /* Progress */
+    .progress-bar { display: flex; gap: 0.5rem; margin-bottom: 2rem; }
+    .progress-dot { flex: 1; height: 4px; border-radius: 2px; background: var(--black-80); }
+    .progress-dot.done { background: var(--pink-light); }
+    .progress-dot.active { background: var(--pink); }
+
+    /* Tags */
+    .tags { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.5rem; min-height: 1.5rem; }
+    .tag {
+      display: inline-flex; align-items: center; gap: 0.375rem;
+      background: rgba(255,20,147,0.15); border: 1px solid var(--pink);
+      border-radius: 50px; padding: 0.375rem 0.875rem;
+      font-size: 0.8rem; color: var(--pink-light); cursor: pointer;
+    }
+    .tag:hover { background: rgba(255,20,147,0.3); }
+
+    /* Step */
+    .step-label { font-size: 0.75rem; color: var(--pink); font-weight: 600; letter-spacing: 0.05em; margin-bottom: 0.5rem; }
+    .step-question { font-size: 1.125rem; font-weight: 700; margin-bottom: 1.25rem; line-height: 1.4; }
+
+    /* Buttons */
+    .opt {
+      display: block; width: 100%; margin-bottom: 0.75rem;
+      background: var(--black-80); border: 2px solid transparent; border-radius: 14px;
+      padding: 1.125rem 1.25rem; color: var(--white);
+      font-size: 1rem; font-weight: 500;
+      font-family: inherit; cursor: pointer; text-align: left;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .opt:hover { border-color: var(--pink-pale); background: rgba(255,20,147,0.08); }
+    .opt:active { border-color: var(--pink); background: rgba(255,20,147,0.12); }
+    .opt-name { font-size: 1rem; margin-bottom: 0.125rem; }
+    .opt-desc { font-size: 0.8rem; color: var(--gray-dark); }
+
+    /* Result */
+    .result-card {
+      background: linear-gradient(145deg, #1e1e1e, #2a2a2a);
+      border: 1px solid rgba(255,20,147,0.2); border-radius: 20px;
+      padding: 1.75rem 1.5rem; margin-bottom: 1.25rem;
+    }
+    .result-row {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 0.875rem 0; border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .result-row:last-child { border-bottom: none; }
+    .result-label { font-size: 0.875rem; color: var(--gray-dark); }
+    .result-value { font-size: 1rem; font-weight: 700; color: var(--pink); text-align: right; }
+
+    .note-box {
+      background: rgba(255,20,147,0.08); border: 1px solid rgba(255,20,147,0.2);
+      border-radius: 14px; padding: 1.25rem; margin-bottom: 1.25rem;
+    }
+    .note-box-title { font-size: 0.8rem; color: var(--pink); font-weight: 600; margin-bottom: 0.5rem; }
+    .note-box-text { font-size: 0.875rem; color: var(--gray-medium); line-height: 1.6; }
+
+    .desc-box {
+      background: rgba(255,255,255,0.04); border-radius: 14px;
+      padding: 1.25rem; margin-bottom: 1.25rem;
+    }
+    .desc-box-title { font-size: 0.8rem; color: var(--pink); font-weight: 600; margin-bottom: 0.5rem; }
+    .desc-box-text { font-size: 0.9375rem; color: var(--gray-medium); line-height: 1.7; }
+
+    .disclaimer {
+      background: rgba(255,255,255,0.03); border-radius: 12px;
+      padding: 1.125rem; margin-top: 1.5rem;
+    }
+    .disclaimer p { font-size: 0.775rem; color: var(--gray-dark); line-height: 1.7; margin-bottom: 0.375rem; }
+    .disclaimer p:last-child { margin-bottom: 0; }
+
+    .retry-btn {
+      display: block; width: 100%; margin-top: 1.5rem; padding: 1.125rem;
+      background: transparent; border: 2px solid var(--pink); border-radius: 50px;
+      color: var(--pink); font-size: 1rem; font-weight: 600;
+      font-family: inherit; cursor: pointer;
+    }
+    .retry-btn:hover { background: var(--pink); color: var(--white); }
+
+    .footer { text-align: center; margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.06); }
+    .footer-brand { font-size: 0.9375rem; font-weight: 700; color: var(--pink); margin-bottom: 0.25rem; }
+    .footer-sub { font-size: 0.75rem; color: var(--gray-dark); }
+  </style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="header">
+    <div class="header-brand">앙비떼뷰티</div>
+    <h1 class="header-title"><span>롯드 선정</span> 진단기</h1>
+    <p class="header-sub">눈매와 속눈썹 상태에 맞는 최적의 롯드를 추천해드려요</p>
+  </div>
+
+  <div class="progress-bar">
+    <div class="progress-dot active" id="p1"></div>
+    <div class="progress-dot" id="p2"></div>
+    <div class="progress-dot" id="p3"></div>
+  </div>
+
+  <div class="tags" id="tags"></div>
+
+  <!-- 모든 컨텐츠가 여기에 동적으로 렌더링됩니다 -->
+  <div id="content"></div>
+
+  <div class="footer">
+    <div class="footer-brand">앙비떼뷰티</div>
+    <div class="footer-sub">뷰러펌 | 뷰러펌 수강</div>
+  </div>
+
+</div>
+
+<script>
+// 상태
+var step = 1;
+var s1 = '';
+var s2 = '';
+var s3 = '';
+
+// 결과 데이터
+var DATA = {
+  'none_thin_down':   { curl:'모든 컬 가능', dir:'정방향', size:'정', desc:'극하향모는 뿌리 부분이 물방울 모양인 롯드 사용을 더 추천드려요!' },
+  'none_thin_normal': { curl:'모든 컬 가능', dir:'정방향', size:'정', desc:'뿌리 덮임이 없어 자유로운 컬 선택이 가능해요!' },
+  'none_thin_up':     { curl:'모든 컬 가능', dir:'정방향', size:'정', desc:'뿌리 덮임이 없어 자유로운 컬 선택이 가능해요!' },
+  'none_thick_down':   { curl:'물방울 C컬', dir:'정방향', size:'정', desc:'극하향모는 뿌리 부분 물방울 모양인 롯드 사용을 더 추천드려요!' },
+  'none_thick_normal': { curl:'C컬', dir:'정방향', size:'정', desc:'공간감이 많이 필요한 눈매이므로 C컬 롯드 추천!\n롱래쉬인 경우 롯드 아무거나 사용 가능해요!' },
+  'none_thick_up':     { curl:'C컬', dir:'정방향', size:'정', desc:'공간감이 많이 필요한 눈매이므로 C컬 롯드 추천!\n롱래쉬인 경우 롯드 아무거나 사용 가능해요!' },
+  'some_thin_down':   { curl:'모든 컬 가능', dir:'정방향', size:'정', desc:'극하향모는 뿌리 부분이 물방울 모양인 롯드 사용을 더 추천!\n롯드 방향 주의해서 시술해 주세요!' },
+  'some_thin_normal': { curl:'모든 컬 가능', dir:'정방향', size:'정', desc:'롯드의 방향 주의해서 시술해 주세요!' },
+  'some_thin_up':     { curl:'모든 컬 가능', dir:'정방향', size:'정', desc:'롯드의 방향 주의해서 시술해 주세요!' },
+  'some_thick_down':   { curl:'물방울 C컬', dir:'정방향', size:'정', desc:'극하향모는 뿌리 부분이 물방울 모양인 롯드 사용을 더 추천!\n롯드의 방향 주의해서 시술해 주세요!' },
+  'some_thick_normal': { curl:'C컬', dir:'정방향', size:'정', desc:'롯드의 방향 주의해서 시술해 주세요!' },
+  'some_thick_up':     { curl:'C컬', dir:'정방향', size:'정', desc:'롯드의 방향 주의해서 시술해 주세요!' },
+  'much_thin_down':   { curl:'물방울 C컬 / L컬', dir:'정방향 / 역방향', size:'물방울 C컬 = 다운, L컬 = 업', desc:'사용하는 컬에 따라 사이즈 선택이 다릅니다.\n롯드의 방향 주의해서 시술해 주세요!' },
+  'much_thin_normal': { curl:'모든 컬 가능', dir:'정방향 / 역방향', size:'정', desc:'모든 컬 가능하지만 뿌리쪽 두께가 통통한 롯드로 선택하세요!\n롯드의 방향 주의해서 시술해 주세요!' },
+  'much_thin_up':     { curl:'모든 컬 가능', dir:'정방향 / 역방향', size:'정', desc:'모든 컬 가능하지만 뿌리쪽 두께가 통통한 롯드로 선택하세요!\n롯드의 방향 주의해서 시술해 주세요!' },
+  'much_thick_down':   { curl:'물방울 C컬', dir:'정방향 / 역방향', size:'다운', desc:'롯드의 방향 주의해서 시술해 주세요!' },
+  'much_thick_normal': { curl:'C컬', dir:'정방향 / 역방향', size:'정', desc:'롯드의 방향 주의해서 시술해 주세요!' },
+  'much_thick_up':     { curl:'C컬', dir:'정방향 / 역방향', size:'정', desc:'롯드의 방향 주의해서 시술해 주세요!' }
+};
+
+var LABELS = { none:'덮인 곳 없음', some:'조금 덮임', much:'많이 덮임', thin:'얇음', thick:'두꺼움', down:'극하향', normal:'평균', up:'극상향' };
+
+function render() {
+  var content = document.getElementById('content');
+  var tags = document.getElementById('tags');
+  var p1 = document.getElementById('p1');
+  var p2 = document.getElementById('p2');
+  var p3 = document.getElementById('p3');
+
+  // Progress
+  p1.className = 'progress-dot' + (step === 1 ? ' active' : (step > 1 ? ' done' : ''));
+  p2.className = 'progress-dot' + (step === 2 ? ' active' : (step > 2 ? ' done' : ''));
+  p3.className = 'progress-dot' + (step === 3 ? ' active' : (step > 3 ? ' done' : ''));
+
+  // Tags
+  var tagHTML = '';
+  if (s1) tagHTML += '<span class="tag" onclick="goBack(1)">' + LABELS[s1] + ' ✕</span>';
+  if (s2) tagHTML += '<span class="tag" onclick="goBack(2)">' + LABELS[s2] + ' ✕</span>';
+  if (s3) tagHTML += '<span class="tag" onclick="goBack(3)">' + LABELS[s3] + ' ✕</span>';
+  tags.innerHTML = tagHTML;
+
+  // Content
+  var html = '';
+
+  if (step === 1) {
+    html += '<div class="step-label">STEP 1</div>';
+    html += '<div class="step-question">눈두덩이 속눈썹 뿌리를<br>얼마나 덮고 있나요?</div>';
+    html += '<button type="button" class="opt" onclick="pick1(\'none\')"><div class="opt-name">👁️ 덮인 곳 없음</div><div class="opt-desc">뿌리가 잘 보이는 눈</div></button>';
+    html += '<button type="button" class="opt" onclick="pick1(\'some\')"><div class="opt-name">👁️‍🗨️ 조금 덮임</div><div class="opt-desc">뿌리가 살짝 덮여 있는 눈</div></button>';
+    html += '<button type="button" class="opt" onclick="pick1(\'much\')"><div class="opt-name">😑 많이 덮임</div><div class="opt-desc">뿌리가 많이 덮여 있는 눈 (무쌍, 속쌍 등)</div></button>';
+  }
+
+  else if (step === 2) {
+    html += '<div class="step-label">STEP 2</div>';
+    html += '<div class="step-question">속눈썹 두께는 어떤가요?</div>';
+    html += '<button type="button" class="opt" onclick="pick2(\'thin\')"><div class="opt-name">🪶 얇음</div><div class="opt-desc">가늘고 부드러운 속눈썹</div></button>';
+    html += '<button type="button" class="opt" onclick="pick2(\'thick\')"><div class="opt-name">💪 두꺼움</div><div class="opt-desc">굵고 힘 있는 속눈썹</div></button>';
+  }
+
+  else if (step === 3) {
+    html += '<div class="step-label">STEP 3</div>';
+    html += '<div class="step-question">속눈썹이 자라는 방향은?</div>';
+    html += '<button type="button" class="opt" onclick="pick3(\'down\')"><div class="opt-name">⬇️ 극하향</div><div class="opt-desc">속눈썹이 아래로 많이 처져 있음</div></button>';
+    html += '<button type="button" class="opt" onclick="pick3(\'normal\')"><div class="opt-name">➡️ 평균</div><div class="opt-desc">일반적인 속눈썹 방향</div></button>';
+    html += '<button type="button" class="opt" onclick="pick3(\'up\')"><div class="opt-name">⬆️ 극상향</div><div class="opt-desc">속눈썹이 위로 많이 올라가 있음</div></button>';
+  }
+
+  else if (step === 4) {
+    var key = s1 + '_' + s2 + '_' + s3;
+    var d = DATA[key];
+    if (!d) { html = '<p>결과를 찾을 수 없습니다.</p>'; content.innerHTML = html; return; }
+
+    html += '<div style="text-align:center;margin-bottom:2rem"><h2 style="font-size:1.375rem;font-weight:700">✨ 추천 결과</h2><p style="font-size:0.875rem;color:var(--gray-dark)">선택하신 조건에 맞는 롯드 추천이에요</p></div>';
+
+    html += '<div class="result-card">';
+    html += '<div class="result-row"><span class="result-label">추천 컬</span><span class="result-value">' + d.curl + '</span></div>';
+    html += '<div class="result-row"><span class="result-label">롯드 방향</span><span class="result-value">' + d.dir + '</span></div>';
+    html += '<div class="result-row"><span class="result-label">추천 사이즈</span><span class="result-value">' + d.size + '</span></div>';
+    html += '</div>';
+
+    // 극하향 아닌데 역방향 포함된 경우
+    if (s3 !== 'down' && d.dir.indexOf('역방향') !== -1) {
+      html += '<div class="note-box">';
+      html += '<div class="note-box-title">💡 롯드 방향 참고</div>';
+      html += '<div class="note-box-text">롯드 방향 [ 정방향 / 역방향 ]이 나온 경우,<br>사용할 롯드 앞머리 부분 체크 후 <strong style="color:var(--pink-light)">많이 얇은 경우에만 역방향</strong>으로 사용합니다.</div>';
+      html += '</div>';
+    }
+
+    html += '<div class="desc-box">';
+    html += '<div class="desc-box-title">📋 참고사항</div>';
+    html += '<div class="desc-box-text">' + d.desc.replace(/\n/g, '<br>') + '</div>';
+    html += '</div>';
+
+    html += '<div class="disclaimer">';
+    html += '<p>* 위의 추천 결과는 길이 상관없이 적용하시고, 극손상모의 경우 적용 제외합니다. (극손상모는 시술법 상이)</p>';
+    html += '<p>+ 쏭원장의 시술법 기준으로 제작되어 시술법이 다를 경우 다소 결과가 다르게 나올 수 있습니다.</p>';
+    html += '</div>';
+
+    html += '<button type="button" class="retry-btn" onclick="reset()">다시 진단하기</button>';
+  }
+
+  content.innerHTML = html;
+}
+
+function pick1(v) { s1 = v; s2 = ''; s3 = ''; step = 2; render(); }
+function pick2(v) { s2 = v; s3 = ''; step = 3; render(); }
+function pick3(v) { s3 = v; step = 4; render(); }
+
+function goBack(n) {
+  if (n === 1) { s1 = ''; s2 = ''; s3 = ''; step = 1; }
+  else if (n === 2) { s2 = ''; s3 = ''; step = 2; }
+  else if (n === 3) { s3 = ''; step = 3; }
+  render();
+}
+
+function reset() { s1 = ''; s2 = ''; s3 = ''; step = 1; render(); }
+
+// 초기 렌더링
+render();
+</script>
+</body>
+</html>
