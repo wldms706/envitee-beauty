@@ -60,7 +60,7 @@
   <section class="solution" id="solution">
     <div class="container">
       <h2 class="section-headline white">
-        저는 혼자서도 흔들리지 않게<br>
+        혼자서도 흔들리지 않게<br>
         <span class="highlight">시술 기준을 만들어주는 수업</span>을 합니다
       </h2>
       <div class="solution-grid">
@@ -201,11 +201,29 @@
         잘 맞는 수업인지<br>먼저 확인하세요
       </h2>
       <p class="cta-desc animate-on-scroll">
-        👉🏻 아래 버튼을 눌러 간단한 상담/문의만 남겨주세요
+        아래 양식을 작성해주시면 빠르게 연락드리겠습니다
       </p>
-      <div class="cta-btn-wrap animate-on-scroll">
-        <a href="#" class="btn-primary btn-pulse" id="cta-button">수강 상담 신청하기</a>
-      </div>
+
+      <form class="cta-form animate-on-scroll" id="cta-form">
+        <div class="form-group">
+          <label for="form-name">이름</label>
+          <input type="text" id="form-name" name="name" placeholder="이름을 입력해주세요" required>
+        </div>
+        <div class="form-group">
+          <label for="form-phone">연락처</label>
+          <input type="tel" id="form-phone" name="phone" placeholder="010-0000-0000" required>
+        </div>
+        <div class="form-group">
+          <label for="form-shop">상호명</label>
+          <input type="text" id="form-shop" name="shop" placeholder="상호명을 입력해주세요">
+        </div>
+        <div class="form-group">
+          <label for="form-problem">현재 고민 / 문제점</label>
+          <textarea id="form-problem" name="problem" rows="4" placeholder="현재 시술에서 겪고 계신 어려움이나 고민을 자유롭게 적어주세요"></textarea>
+        </div>
+        <button type="submit" class="btn-primary btn-pulse form-submit">수강 상담 신청하기</button>
+      </form>
+
       <p class="cta-reassure animate-on-scroll">
         결정은 상담 후에 하셔도 됩니다. 강요없는 상담입니다.
       </p>

@@ -1,22 +1,42 @@
 // ========================================
-// Form / CTA Button Handler
+// Form / CTA Handler
 // ========================================
 
 document.addEventListener('DOMContentLoaded', () => {
-  const ctaButton = document.getElementById('cta-button');
+  const form = document.getElementById('cta-form');
 
-  if (ctaButton) {
-    ctaButton.addEventListener('click', (e) => {
+  if (form) {
+    form.addEventListener('submit', (e) => {
       e.preventDefault();
 
-      // 옵션 1: 카카오톡 오픈채팅 링크로 이동
-      // window.open('https://open.kakao.com/your-link', '_blank');
+      const name = document.getElementById('form-name').value.trim();
+      const phone = document.getElementById('form-phone').value.trim();
+      const shop = document.getElementById('form-shop').value.trim();
+      const problem = document.getElementById('form-problem').value.trim();
 
-      // 옵션 2: 인스타그램 DM으로 이동
-      // window.open('https://www.instagram.com/your-account/', '_blank');
+      if (!name || !phone) {
+        alert('이름과 연락처는 필수 입력 항목입니다.');
+        return;
+      }
 
-      // 옵션 3: 기본 알림 (실제 링크 연결 전 테스트용)
-      alert('상담 신청 링크를 연결해주세요!\n\n카카오톡 오픈채팅 또는 인스타그램 DM 링크를 js/form-handler.js 파일에서 설정할 수 있습니다.');
+      // Meta Pixel Lead 이벤트 (픽셀 설치 후 활성화)
+      // fbq('track', 'Lead', {
+      //   content_name: '속눈썹펌 수강 상담',
+      //   content_category: 'consultation',
+      // });
+
+      // 폼 데이터 (추후 백엔드 연동 시 사용)
+      const formData = { name, phone, shop, problem };
+      console.log('상담 신청 데이터:', formData);
+
+      // 제출 완료 UI
+      form.innerHTML = `
+        <div class="form-success">
+          <div class="form-success-icon">✓</div>
+          <h3>상담 신청이 완료되었습니다</h3>
+          <p>${name}님, 빠른 시간 내에 연락드리겠습니다.</p>
+        </div>
+      `;
     });
   }
 
