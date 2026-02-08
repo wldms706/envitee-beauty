@@ -302,7 +302,82 @@ section {
 }
 
 /* ========================================
-   7. CTA Section
+   7. FAQ Section
+   ======================================== */
+
+.faq {
+  background: var(--primary-pink-bg);
+}
+
+.faq-list {
+  max-width: 700px;
+  margin: 0 auto;
+  display: grid;
+  gap: var(--spacing-sm);
+}
+
+.faq-item {
+  background: var(--white);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+  transition: box-shadow 0.3s ease;
+}
+
+.faq-item:hover {
+  box-shadow: 0 4px 20px var(--shadow-pink);
+}
+
+.faq-question {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem 1.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: var(--font-primary);
+  font-size: var(--size-body);
+  font-weight: var(--weight-semibold);
+  color: var(--black);
+  text-align: left;
+  gap: var(--spacing-sm);
+  line-height: var(--line-height-normal);
+}
+
+.faq-icon {
+  font-size: 1.5rem;
+  color: var(--primary-pink);
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+  font-weight: var(--weight-light);
+}
+
+.faq-item.active .faq-icon {
+  transform: rotate(45deg);
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease, padding 0.35s ease;
+  padding: 0 1.5rem;
+}
+
+.faq-item.active .faq-answer {
+  max-height: 300px;
+  padding: 0 1.5rem 1.25rem;
+}
+
+.faq-answer p {
+  font-size: var(--size-body);
+  color: var(--black-80);
+  line-height: var(--line-height-relaxed);
+}
+
+/* ========================================
+   8. CTA Section
    ======================================== */
 
 .cta {
