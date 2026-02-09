@@ -139,6 +139,15 @@
    Section Headline
    ======================================== */
 
+.section-sub {
+  font-size: var(--size-body);
+  font-weight: var(--weight-semibold);
+  color: var(--primary-pink);
+  text-align: center;
+  margin-bottom: var(--spacing-xs);
+  letter-spacing: var(--letter-spacing-wide);
+}
+
 .section-headline {
   font-size: var(--size-h2);
   font-weight: var(--weight-bold);

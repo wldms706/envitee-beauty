@@ -127,9 +127,9 @@ section {
 
 .problem .card-white .check-icon {
   color: var(--primary-pink);
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   flex-shrink: 0;
-  margin-top: 2px;
+  line-height: var(--line-height-relaxed);
 }
 
 /* ========================================
