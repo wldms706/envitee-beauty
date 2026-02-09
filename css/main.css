@@ -235,6 +235,83 @@ section {
 }
 
 /* ========================================
+   4.5. Review Slider Section
+   ======================================== */
+
+.review-slider {
+  background: var(--black-gradient);
+  overflow: hidden;
+}
+
+.review-slider .section-headline {
+  color: var(--white);
+  margin-bottom: var(--spacing-lg);
+}
+
+.slider-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.slider-track {
+  display: flex;
+  gap: var(--spacing-sm);
+  width: max-content;
+}
+
+.slider-left {
+  animation: scrollLeft 40s linear infinite;
+}
+
+.slider-right {
+  animation: scrollRight 35s linear infinite;
+}
+
+.slider-slide {
+  flex-shrink: 0;
+  width: 260px;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.slider-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.slider-track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes scrollLeft {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes scrollRight {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@media (max-width: 767px) {
+  .slider-slide {
+    width: 200px;
+  }
+}
+
+/* ========================================
    5. Target Section
    ======================================== */
 
