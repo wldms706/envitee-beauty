@@ -74,6 +74,11 @@ section {
   margin-bottom: var(--spacing-md);
 }
 
+.hero-headline .highlight {
+  color: var(--primary-pink-light);
+  font-weight: var(--weight-bold);
+}
+
 .hero-sub {
   font-size: var(--size-h3);
   font-weight: var(--weight-bold);
