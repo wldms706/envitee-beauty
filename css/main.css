@@ -49,13 +49,27 @@ section {
   left: 0;
   width: 100%;
   height: 100%;
-  background: radial-gradient(ellipse at center, rgba(255, 20, 147, 0.08) 0%, transparent 70%);
+  background:
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.4) 40%, rgba(0, 0, 0, 0.4) 60%, rgba(0, 0, 0, 0.6) 100%),
+    radial-gradient(ellipse at center, rgba(255, 20, 147, 0.08) 0%, transparent 70%);
   pointer-events: none;
+  z-index: 1;
+}
+
+.hero-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.55;
+  z-index: 0;
 }
 
 .hero .container {
   position: relative;
-  z-index: 1;
+  z-index: 2;
 }
 
 .hero-logo {
@@ -69,9 +83,10 @@ section {
 .hero-headline {
   font-size: var(--size-h2);
   font-weight: var(--weight-medium);
-  color: var(--gray-medium);
+  color: var(--white);
   line-height: var(--line-height-tight);
   margin-bottom: var(--spacing-md);
+  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.8);
 }
 
 .hero-headline .highlight {
@@ -85,6 +100,7 @@ section {
   color: var(--white);
   line-height: var(--line-height-tight);
   margin-bottom: var(--spacing-lg);
+  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.8);
 }
 
 .hero-sub .emoji {
@@ -138,6 +154,24 @@ section {
 
 .solution {
   background: var(--black-gradient);
+  position: relative;
+  overflow: hidden;
+}
+
+.section-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.15;
+  z-index: 0;
+}
+
+.solution .container {
+  position: relative;
+  z-index: 1;
 }
 
 .solution .section-headline {
@@ -314,6 +348,11 @@ section {
   .slider-slide {
     width: 200px;
   }
+
+  .section-headline br,
+  .cta-desc br {
+    display: none;
+  }
 }
 
 /* ========================================
@@ -335,52 +374,87 @@ section {
 
 .credibility {
   background: var(--black-gradient);
+  padding: 0;
 }
 
-.credibility-badge {
-  text-align: center;
-  margin-bottom: var(--spacing-xl);
-}
-
-.credibility-badge .badge {
-  display: inline-block;
-  border: 2px solid var(--primary-pink);
-  border-radius: 16px;
-  padding: var(--spacing-md) var(--spacing-xl);
-  color: var(--white);
-}
-
-.credibility-badge .badge-number {
-  font-size: var(--size-h1);
-  font-weight: var(--weight-bold);
-  color: var(--primary-pink);
-  line-height: 1;
-}
-
-.credibility-badge .badge-label {
-  font-size: var(--size-body-lg);
-  font-weight: var(--weight-medium);
-  margin-top: var(--spacing-xs);
-}
-
-.credibility-points {
-  display: grid;
-  gap: var(--spacing-md);
-  max-width: 600px;
-  margin: 0 auto;
-}
-
-.credibility-point {
+.credibility-split {
   display: flex;
-  align-items: center;
-  gap: var(--spacing-sm);
-  color: var(--white);
-  font-size: var(--size-body-lg);
+  min-height: 600px;
 }
 
-.credibility-point .point-icon {
-  font-size: 2rem;
-  flex-shrink: 0;
+.credibility-photo {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+}
+
+.profile-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+}
+
+.credibility-info {
+  flex: 1;
+  color: var(--white);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: var(--spacing-xl) 3rem;
+}
+
+.credibility-brand {
+  font-size: var(--size-body-sm);
+  color: var(--primary-pink);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--letter-spacing-wide);
+  margin-bottom: var(--spacing-xs);
+}
+
+.credibility-name {
+  font-size: var(--size-h2);
+  font-weight: var(--weight-bold);
+  margin-bottom: var(--spacing-md);
+}
+
+.credibility-career {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.career-item {
+  font-size: var(--size-body);
+  color: var(--gray-medium);
+  padding-left: 1rem;
+  border-left: 2px solid var(--primary-pink);
+  line-height: var(--line-height-normal);
+}
+
+@media (max-width: 767px) {
+  .credibility-split {
+    flex-direction: column;
+    min-height: auto;
+  }
+
+  .credibility-photo {
+    width: 100%;
+    max-height: 500px;
+  }
+
+  .credibility-info {
+    padding: var(--spacing-xl) 1.5rem;
+    text-align: center;
+  }
+
+  .career-item {
+    border-left: none;
+    padding-left: 0;
+    border-bottom: 1px solid rgba(255, 20, 147, 0.2);
+    padding-bottom: var(--spacing-xs);
+  }
 }
 
 /* ========================================
@@ -531,6 +605,9 @@ section {
   padding: 1.25rem;
   font-size: var(--size-h4);
   margin-top: var(--spacing-sm);
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .form-success {
