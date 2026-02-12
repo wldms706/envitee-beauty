@@ -699,17 +699,28 @@ section {
   margin-bottom: var(--spacing-lg);
 }
 
-.footer-instagram {
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: var(--spacing-md);
+}
+
+.footer-instagram,
+.footer-naver {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
   color: var(--white);
   font-size: var(--size-body);
   padding: 0.75rem 1.5rem;
-  border: 1px solid var(--primary-pink);
   border-radius: 50px;
   transition: all 0.3s ease;
-  margin-bottom: var(--spacing-md);
+}
+
+.footer-instagram {
+  border: 1px solid var(--primary-pink);
 }
 
 .footer-instagram:hover {
@@ -717,7 +728,17 @@ section {
   color: var(--white);
 }
 
-.footer-instagram svg {
+.footer-naver {
+  border: 1px solid #03C75A;
+}
+
+.footer-naver:hover {
+  background: #03C75A;
+  color: var(--white);
+}
+
+.footer-instagram svg,
+.footer-naver svg {
   width: 20px;
   height: 20px;
   fill: currentColor;

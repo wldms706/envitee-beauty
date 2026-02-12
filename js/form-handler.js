@@ -38,11 +38,13 @@ document.addEventListener('DOMContentLoaded', () => {
           });
         }
 
-        // Meta Pixel Lead 이벤트 (픽셀 설치 후 활성화)
-        // fbq('track', 'Lead', {
-        //   content_name: '속눈썹펌 수강 상담',
-        //   content_category: 'consultation',
-        // });
+        // Meta Pixel Lead 이벤트
+        if (typeof fbq === 'function') {
+          fbq('track', 'Lead', {
+            content_name: '속눈썹펌 수강 상담',
+            content_category: 'consultation',
+          });
+        }
 
         // 제출 완료 UI
         form.innerHTML = `
