@@ -1,0 +1,415 @@
+/* ========================================
+   Curriculum Page Styles
+   ======================================== */
+
+/* ===== Nav ===== */
+.cur-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: rgba(0, 0, 0, 0.9);
+  backdrop-filter: blur(10px);
+  padding: 1rem 0;
+}
+
+.cur-nav-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cur-nav-brand {
+  font-size: var(--size-h4);
+  font-weight: var(--weight-bold);
+  color: var(--primary-pink);
+}
+
+.cur-nav-btn {
+  padding: 0.6rem 1.5rem !important;
+  font-size: var(--size-body-sm) !important;
+}
+
+/* ===== Hero ===== */
+.cur-hero {
+  background: var(--black-gradient);
+  text-align: center;
+  padding: 8rem 0 4rem;
+}
+
+.cur-hero-sub {
+  font-size: var(--size-body-sm);
+  font-weight: var(--weight-semibold);
+  color: var(--primary-pink);
+  letter-spacing: 0.2em;
+  margin-bottom: var(--spacing-md);
+}
+
+.cur-hero-title {
+  font-size: var(--size-h1);
+  font-weight: var(--weight-bold);
+  color: var(--white);
+  line-height: var(--line-height-tight);
+  margin-bottom: var(--spacing-md);
+}
+
+.cur-hero-desc {
+  font-size: var(--size-body-lg);
+  color: var(--gray-dark);
+}
+
+/* ===== Common Curriculum ===== */
+.cur-common {
+  background: var(--white);
+}
+
+.cur-common-grid {
+  display: grid;
+  gap: var(--spacing-md);
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.cur-common-card {
+  background: var(--white);
+  border: 2px solid var(--primary-pink-pale);
+  border-radius: 20px;
+  padding: var(--spacing-lg) var(--spacing-xl);
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.cur-common-card:hover {
+  border-color: var(--primary-pink);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(255, 20, 147, 0.12);
+}
+
+.cur-common-num {
+  font-size: 3rem;
+  font-weight: var(--weight-bold);
+  color: var(--primary-pink-pale);
+  line-height: 1;
+  margin-bottom: var(--spacing-sm);
+}
+
+.cur-common-title {
+  font-size: var(--size-h3);
+  font-weight: var(--weight-bold);
+  color: var(--black);
+  margin-bottom: var(--spacing-sm);
+}
+
+.cur-common-desc {
+  font-size: var(--size-body);
+  color: var(--gray-dark);
+  line-height: var(--line-height-relaxed);
+}
+
+.cur-common-list {
+  margin-top: var(--spacing-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.cur-common-list li {
+  font-size: var(--size-body);
+  color: var(--black-80);
+  padding-left: 1.5rem;
+  position: relative;
+}
+
+.cur-common-list li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: var(--primary-pink);
+  font-weight: var(--weight-bold);
+}
+
+.cur-common-result {
+  margin-top: var(--spacing-sm);
+  font-size: var(--size-body);
+  font-weight: var(--weight-bold);
+  color: var(--primary-pink);
+  padding-left: 1.5rem;
+  position: relative;
+}
+
+.cur-common-result::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+}
+
+/* ===== Class Guide ===== */
+.cur-classes {
+  background: var(--black-gradient);
+}
+
+.cur-classes-grid {
+  display: grid;
+  gap: var(--spacing-lg);
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.cur-class-card {
+  background: var(--black-90);
+  border: 2px solid rgba(255, 255, 255, 0.08);
+  border-radius: 24px;
+  padding: var(--spacing-xl);
+  text-align: center;
+  position: relative;
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.cur-class-card:hover {
+  border-color: var(--primary-pink);
+  transform: translateY(-6px);
+  box-shadow: 0 20px 60px rgba(255, 20, 147, 0.15);
+}
+
+.cur-class-card.featured {
+  border-color: var(--primary-pink);
+  background: linear-gradient(180deg, rgba(255, 20, 147, 0.08) 0%, var(--black-90) 40%);
+}
+
+.cur-class-popular {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: var(--primary-pink);
+  color: var(--white);
+  font-size: 0.75rem;
+  font-weight: var(--weight-bold);
+  padding: 0.35rem 1rem;
+  border-radius: 50px;
+  letter-spacing: 0.05em;
+}
+
+.cur-class-badge {
+  display: inline-block;
+  font-size: var(--size-body-sm);
+  font-weight: var(--weight-semibold);
+  color: var(--primary-pink);
+  letter-spacing: 0.15em;
+  margin-bottom: var(--spacing-sm);
+}
+
+.cur-class-name {
+  font-size: var(--size-h3);
+  font-weight: var(--weight-bold);
+  color: var(--white);
+  margin-bottom: var(--spacing-sm);
+}
+
+.cur-class-meta {
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-md);
+}
+
+.cur-class-meta span {
+  font-size: var(--size-body-sm);
+  color: var(--gray-medium);
+  background: rgba(255, 255, 255, 0.06);
+  padding: 0.4rem 1rem;
+  border-radius: 50px;
+}
+
+.cur-class-price {
+  font-size: 3.5rem;
+  font-weight: var(--weight-bold);
+  color: var(--white);
+  margin-bottom: var(--spacing-md);
+  line-height: 1;
+}
+
+.cur-class-price span {
+  font-size: var(--size-h4);
+  font-weight: var(--weight-medium);
+  color: var(--gray-medium);
+}
+
+.cur-class-target {
+  font-size: var(--size-body);
+  color: var(--gray-medium);
+  line-height: var(--line-height-relaxed);
+  margin-bottom: var(--spacing-md);
+}
+
+.cur-class-divider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.08);
+  margin: var(--spacing-md) 0;
+}
+
+.cur-class-inc-title {
+  font-size: var(--size-body);
+  font-weight: var(--weight-semibold);
+  color: var(--primary-pink-light);
+  margin-bottom: var(--spacing-sm);
+  text-align: left;
+}
+
+.cur-class-inc {
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.cur-class-inc li {
+  font-size: var(--size-body);
+  color: var(--gray-medium);
+  padding-left: 1.5rem;
+  position: relative;
+  line-height: var(--line-height-normal);
+}
+
+.cur-class-inc li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: var(--primary-pink);
+  font-weight: var(--weight-bold);
+}
+
+.highlight-pink {
+  color: var(--primary-pink);
+  font-weight: var(--weight-bold);
+}
+
+.cur-class-note {
+  font-size: var(--size-body-sm);
+  color: var(--gray-medium);
+  line-height: var(--line-height-relaxed);
+  text-align: left;
+}
+
+.cur-class-btn {
+  margin-top: var(--spacing-lg);
+  width: 100%;
+  padding: 1rem 2rem;
+}
+
+/* ===== Lifetime Feedback ===== */
+.cur-feedback {
+  background: var(--primary-pink-bg);
+}
+
+.cur-feedback-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--spacing-md);
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.cur-feedback-item {
+  background: var(--white);
+  border-radius: 16px;
+  padding: var(--spacing-lg);
+  text-align: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+}
+
+.cur-feedback-item:last-child {
+  grid-column: 1 / -1;
+  max-width: 340px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.cur-feedback-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px var(--shadow-pink);
+}
+
+.cur-feedback-icon {
+  font-size: 2.5rem;
+  margin-bottom: var(--spacing-sm);
+}
+
+.cur-feedback-item p {
+  font-size: var(--size-body);
+  font-weight: var(--weight-semibold);
+  color: var(--black-80);
+}
+
+/* ===== Bottom CTA ===== */
+.cur-cta {
+  background: var(--black-gradient);
+  text-align: center;
+  padding: var(--spacing-3xl) 0;
+}
+
+.cur-cta-desc {
+  font-size: var(--size-body-lg);
+  color: var(--gray-dark);
+  margin-bottom: var(--spacing-xl);
+}
+
+.cur-cta .btn-primary {
+  padding: 1.5rem 3rem;
+  font-size: var(--size-h4);
+}
+
+/* ========================================
+   Responsive - Tablet
+   ======================================== */
+@media (min-width: 768px) {
+  .cur-hero {
+    padding: 10rem 0 5rem;
+  }
+
+  .cur-hero-title {
+    font-size: 2.75rem;
+  }
+
+  .cur-common-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .cur-classes-grid {
+    grid-template-columns: repeat(3, 1fr);
+    align-items: start;
+  }
+
+  .cur-feedback-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .cur-feedback-item:last-child {
+    grid-column: auto;
+    max-width: none;
+  }
+}
+
+/* ========================================
+   Responsive - Desktop
+   ======================================== */
+@media (min-width: 1024px) {
+  .cur-hero-title {
+    font-size: 3rem;
+  }
+
+  .cur-class-card {
+    padding: var(--spacing-xl) var(--spacing-lg);
+  }
+
+  .cur-feedback-grid {
+    grid-template-columns: repeat(5, 1fr);
+    max-width: 1000px;
+  }
+
+  .cur-feedback-item:last-child {
+    max-width: none;
+  }
+}

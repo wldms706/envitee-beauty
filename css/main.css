@@ -118,6 +118,21 @@ section {
   color: var(--primary-pink-light);
 }
 
+.hero-curriculum-btn {
+  display: inline-block;
+  margin-top: var(--spacing-sm);
+  color: var(--white);
+  border-color: rgba(255, 255, 255, 0.4);
+  padding: 0.9rem 2rem;
+  font-size: var(--size-body);
+}
+
+.hero-curriculum-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: var(--white);
+  color: var(--white);
+}
+
 /* ========================================
    2. Problem Section
    ======================================== */
