@@ -364,7 +364,6 @@ section {
     width: 200px;
   }
 
-  .section-headline br,
   .cta-desc br {
     display: none;
   }
