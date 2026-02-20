@@ -3,7 +3,7 @@
 // ========================================
 
 // Google Apps Script 웹앱 URL (배포 후 여기에 붙여넣기)
-const GOOGLE_SHEET_URL = 'https://script.google.com/macros/s/AKfycbyRamyaZH-7hsZKKmARJqLI82SSe-gvoyHiilGC5y9c_L5TeOIqqTaYzcQX_NLeT3rc/exec';
+const GOOGLE_SHEET_URL = 'https://script.google.com/macros/s/AKfycbxl1Ca82JtlBuN1tlEL9_53j4ilSwrSWGvUeQrBrXIU5EKEjkqvwTw_6VyFmVdExdmhyA/exec';
 
 document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('cta-form');
