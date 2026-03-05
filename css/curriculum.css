@@ -339,16 +339,10 @@
   margin-top: var(--spacing-xl);
 }
 
-.cur-gallery-placeholder {
-  aspect-ratio: 4 / 3;
-  background: #f5f5f5;
-  border: 2px dashed #ddd;
+.cur-gallery-item img {
+  width: 100%;
   border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #aaa;
-  font-size: var(--size-body-sm);
+  display: block;
 }
 
 /* ===== Lifetime Feedback ===== */
