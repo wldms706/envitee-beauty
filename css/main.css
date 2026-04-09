@@ -436,6 +436,43 @@ section {
   color: var(--gray-medium);
 }
 
+.eb-closed-sub {
+  margin-bottom: var(--spacing-md);
+}
+
+.eb-price-compare {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-sm);
+}
+
+.eb-price-old {
+  font-size: var(--size-h3);
+  color: var(--gray-dark);
+  text-decoration: line-through;
+  font-weight: var(--weight-semibold);
+}
+
+.eb-price-arrow {
+  font-size: var(--size-h3);
+  color: var(--gray-dark);
+}
+
+.eb-price-new {
+  font-size: var(--size-h1);
+  font-weight: var(--weight-bold);
+  color: var(--primary-pink);
+  text-shadow: 0 0 30px rgba(255, 20, 147, 0.4);
+}
+
+.eb-regular-btn {
+  margin-top: var(--spacing-lg);
+  padding: 1.1rem 3rem;
+  font-size: var(--size-body-lg);
+}
+
 /* 성공 상태 */
 .earlybird-success {
   text-align: center;

@@ -53,6 +53,22 @@ function showClosed() {
   const els = getEls();
   if (els.formWrap) els.formWrap.style.display = 'none';
   if (els.closedWrap) els.closedWrap.style.display = 'block';
+
+  // 팝업도 정가 모드로 전환
+  const popupBadge = document.querySelector('.eb-popup-badge');
+  const popupTitle = document.querySelector('.eb-popup-title');
+  const popupLimit = document.querySelector('.eb-popup-limit');
+  const popupPrice = document.querySelector('.eb-popup-price');
+  const popupBtn = document.getElementById('eb-popup-btn');
+
+  if (popupBadge) popupBadge.textContent = 'SOLD OUT';
+  if (popupTitle) popupTitle.innerHTML = '얼리버드 30명 마감!<br>정가 신청 가능';
+  if (popupLimit) popupLimit.textContent = '얼리버드 마감 · 정가 접수 중';
+  if (popupPrice) popupPrice.innerHTML = '<span style="text-decoration:line-through;color:#666;font-size:1.5rem;">27만원</span> → 35만원';
+  if (popupBtn) {
+    popupBtn.textContent = '35만원 정가 신청하기';
+    popupBtn.href = '#cta';
+  }
 }
 
 // ── 서버에서 카운트 가져오기 ──
