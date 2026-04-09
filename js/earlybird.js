@@ -172,4 +172,40 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
+
+  // 4. 팝업 처리
+  const popupOverlay = document.getElementById('eb-popup-overlay');
+  const popupClose = document.getElementById('eb-popup-close');
+  const popupBtn = document.getElementById('eb-popup-btn');
+
+  if (popupOverlay) {
+    // 2초 후 팝업 표시 (이미 닫은 적 없으면)
+    if (!sessionStorage.getItem('eb-popup-closed')) {
+      setTimeout(() => {
+        popupOverlay.classList.add('active');
+      }, 2000);
+    }
+
+    // 닫기 버튼
+    popupClose.addEventListener('click', () => {
+      popupOverlay.classList.remove('active');
+      sessionStorage.setItem('eb-popup-closed', '1');
+    });
+
+    // 배경 클릭으로 닫기
+    popupOverlay.addEventListener('click', (e) => {
+      if (e.target === popupOverlay) {
+        popupOverlay.classList.remove('active');
+        sessionStorage.setItem('eb-popup-closed', '1');
+      }
+    });
+
+    // 신청 버튼 클릭 → 팝업 닫고 얼리버드 섹션으로 이동
+    popupBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      popupOverlay.classList.remove('active');
+      sessionStorage.setItem('eb-popup-closed', '1');
+      document.getElementById('earlybird').scrollIntoView({ behavior: 'smooth' });
+    });
+  }
 });
