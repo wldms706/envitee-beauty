@@ -134,6 +134,355 @@ section {
 }
 
 /* ========================================
+   EARLYBIRD Section
+   ======================================== */
+
+.earlybird {
+  background: var(--black-gradient);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.earlybird::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(ellipse at center, rgba(255, 20, 147, 0.06) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.earlybird .container {
+  position: relative;
+  z-index: 1;
+}
+
+.earlybird-badge {
+  display: inline-block;
+  background: var(--primary-pink);
+  color: var(--white);
+  padding: 0.4rem 1.5rem;
+  border-radius: 50px;
+  font-size: var(--size-body-sm);
+  font-weight: var(--weight-bold);
+  letter-spacing: 0.15em;
+  margin-bottom: var(--spacing-md);
+  animation: pulse 2s infinite;
+}
+
+.earlybird .section-headline {
+  color: var(--white);
+}
+
+.earlybird-desc {
+  font-size: var(--size-body-lg);
+  color: var(--gray-medium);
+  margin-bottom: var(--spacing-xl);
+}
+
+/* 카운터 영역 */
+.earlybird-counter {
+  max-width: 400px;
+  margin: 0 auto var(--spacing-xl);
+}
+
+.earlybird-remaining-wrap {
+  margin-bottom: var(--spacing-md);
+}
+
+.earlybird-number {
+  font-size: 4.5rem;
+  font-weight: var(--weight-bold);
+  color: var(--primary-pink);
+  line-height: 1;
+  display: block;
+  text-shadow: 0 0 30px rgba(255, 20, 147, 0.4);
+  transition: color 0.3s ease;
+}
+
+.earlybird-number.warning {
+  color: #FFA500;
+  text-shadow: 0 0 30px rgba(255, 165, 0, 0.4);
+}
+
+.earlybird-number.urgent {
+  color: #FF4444;
+  text-shadow: 0 0 30px rgba(255, 68, 68, 0.4);
+  animation: urgentPulse 1s infinite;
+}
+
+@keyframes urgentPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+.earlybird-label {
+  font-size: var(--size-body-lg);
+  color: var(--gray-medium);
+  font-weight: var(--weight-semibold);
+  display: block;
+  margin-top: 0.25rem;
+}
+
+/* 프로그레스 바 */
+.earlybird-progress-wrap {
+  margin-top: var(--spacing-md);
+}
+
+.earlybird-progress-bar {
+  width: 100%;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50px;
+  overflow: hidden;
+}
+
+.earlybird-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--primary-pink), var(--primary-pink-light));
+  border-radius: 50px;
+  transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.earlybird-progress-text {
+  font-size: var(--size-body-sm);
+  color: var(--gray-dark);
+  margin-top: 0.5rem;
+}
+
+/* 신청 폼 */
+.earlybird-form-intro {
+  font-size: var(--size-body);
+  color: var(--gray-medium);
+  margin-bottom: var(--spacing-md);
+}
+
+.earlybird-form {
+  max-width: 540px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.earlybird-form .form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-sm);
+}
+
+.eb-form-group {
+  margin-bottom: var(--spacing-sm);
+}
+
+.eb-form-group label {
+  display: block;
+  font-size: var(--size-body-sm);
+  font-weight: var(--weight-semibold);
+  color: var(--gray-medium);
+  margin-bottom: 0.4rem;
+}
+
+.eb-form-group label .required {
+  color: var(--primary-pink);
+}
+
+.earlybird-form input[type="text"],
+.earlybird-form input[type="tel"] {
+  width: 100%;
+  padding: 0.9rem 1.1rem;
+  border: 2px solid rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  font-size: var(--size-body);
+  font-family: var(--font-primary);
+  color: var(--white);
+  background: rgba(255, 255, 255, 0.05);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  box-sizing: border-box;
+}
+
+.earlybird-form input::placeholder {
+  color: var(--gray-dark);
+}
+
+.earlybird-form input:focus {
+  outline: none;
+  border-color: var(--primary-pink);
+  box-shadow: 0 0 0 3px rgba(255, 20, 147, 0.2);
+}
+
+/* 동의 영역 */
+.eb-agreement {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 1.25rem;
+  margin-bottom: var(--spacing-sm);
+}
+
+.eb-agreement-title {
+  font-size: var(--size-body);
+  font-weight: var(--weight-bold);
+  color: var(--white);
+  margin-bottom: 0.5rem;
+}
+
+.eb-agreement-text {
+  font-size: var(--size-body-sm);
+  color: var(--gray-medium);
+  line-height: var(--line-height-relaxed);
+  margin-bottom: 0.75rem;
+}
+
+.eb-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  font-size: var(--size-body);
+  color: var(--white);
+}
+
+.eb-checkbox input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--primary-pink);
+  cursor: pointer;
+}
+
+/* 수업료 안내 */
+.eb-payment-info {
+  background: rgba(255, 20, 147, 0.08);
+  border: 2px solid rgba(255, 20, 147, 0.25);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: var(--spacing-md);
+  text-align: center;
+}
+
+.eb-payment-badge {
+  display: inline-block;
+  background: var(--primary-pink);
+  color: var(--white);
+  padding: 0.25rem 1rem;
+  border-radius: 50px;
+  font-size: var(--size-body-sm);
+  font-weight: var(--weight-bold);
+  margin-bottom: 0.75rem;
+}
+
+.eb-payment-price {
+  font-size: var(--size-h2);
+  font-weight: var(--weight-bold);
+  color: var(--white);
+  margin-bottom: 0.25rem;
+}
+
+.eb-payment-price span {
+  font-size: var(--size-body);
+  font-weight: var(--weight-regular);
+  color: var(--primary-pink-light);
+}
+
+.eb-payment-account {
+  font-size: var(--size-body);
+  color: var(--gray-medium);
+}
+
+.earlybird-submit {
+  width: 100%;
+  padding: 1.25rem;
+  font-size: var(--size-h4);
+  margin-top: var(--spacing-sm);
+}
+
+.earlybird-note {
+  font-size: var(--size-body-sm);
+  color: var(--gray-dark);
+  margin-top: var(--spacing-md);
+  text-align: center;
+}
+
+/* 마감 상태 */
+.earlybird-closed {
+  display: none;
+  text-align: center;
+  padding: var(--spacing-lg) 0;
+}
+
+.earlybird-closed-badge {
+  display: inline-block;
+  background: var(--gray-dark);
+  color: var(--white);
+  padding: 0.5rem 2rem;
+  border-radius: 50px;
+  font-size: var(--size-h4);
+  font-weight: var(--weight-bold);
+  letter-spacing: 0.1em;
+  margin-bottom: var(--spacing-md);
+}
+
+.earlybird-closed h3 {
+  font-size: var(--size-h3);
+  color: var(--white);
+  font-weight: var(--weight-bold);
+  margin-bottom: var(--spacing-xs);
+}
+
+.earlybird-closed p {
+  font-size: var(--size-body);
+  color: var(--gray-medium);
+}
+
+/* 성공 상태 */
+.earlybird-success {
+  text-align: center;
+  padding: var(--spacing-lg) 0;
+}
+
+.earlybird-success-icon {
+  width: 60px;
+  height: 60px;
+  background: var(--primary-pink);
+  color: var(--white);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.75rem;
+  font-weight: var(--weight-bold);
+  margin: 0 auto var(--spacing-md);
+}
+
+.earlybird-success h3 {
+  font-size: var(--size-h3);
+  font-weight: var(--weight-bold);
+  color: var(--white);
+  margin-bottom: var(--spacing-xs);
+}
+
+.earlybird-success p {
+  font-size: var(--size-body-lg);
+  color: var(--gray-medium);
+}
+
+@media (max-width: 767px) {
+  .earlybird-form .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .earlybird-number {
+    font-size: 3.5rem;
+  }
+
+  .eb-payment-price {
+    font-size: var(--size-h3);
+  }
+}
+
+/* ========================================
    2. Problem Section
    ======================================== */
 

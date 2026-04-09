@@ -50,8 +50,102 @@
       <p class="hero-desc">
         <span>6년 경력</span> 앙비떼뷰티 &nbsp;|&nbsp; <span>1:1 맞춤 수강</span>
       </p>
-      <a href="#cta" class="btn-primary btn-pulse">수강 상담 신청하기</a>
+      <a href="#earlybird" class="btn-primary btn-pulse">얼리버드 특가 신청하기</a>
       <a href="curriculum.html" class="btn-secondary hero-curriculum-btn">커리큘럼 보기</a>
+    </div>
+  </section>
+
+  <!-- ===== EARLYBIRD Section ===== -->
+  <section class="earlybird" id="earlybird">
+    <div class="container">
+      <div class="earlybird-badge">EARLY BIRD</div>
+      <h2 class="section-headline white">
+        라이브 시청자 한정<br>
+        <span class="highlight">얼리버드 특가</span>
+      </h2>
+      <p class="earlybird-desc">지금 신청하시면 얼리버드 특별가로 수강하실 수 있습니다</p>
+
+      <!-- 카운터 -->
+      <div class="earlybird-counter">
+        <div class="earlybird-remaining-wrap">
+          <span class="earlybird-number" id="earlybird-remaining">30</span>
+          <span class="earlybird-label">자리 남음</span>
+        </div>
+        <div class="earlybird-progress-wrap">
+          <div class="earlybird-progress-bar">
+            <div class="earlybird-progress-fill" id="earlybird-progress" style="width: 0%"></div>
+          </div>
+          <p class="earlybird-progress-text"><span id="earlybird-count">0</span> / 30명 신청완료</p>
+        </div>
+      </div>
+
+      <!-- 신청 폼 -->
+      <div id="earlybird-form-wrap">
+        <p class="earlybird-form-intro">빠짐없이 작성 부탁드립니다!</p>
+        <form class="earlybird-form" id="earlybird-form">
+          <div class="form-row">
+            <div class="eb-form-group">
+              <label for="eb-name">성함 <span class="required">*</span></label>
+              <input type="text" id="eb-name" placeholder="성함을 입력해주세요" required>
+            </div>
+            <div class="eb-form-group">
+              <label for="eb-phone">연락처 <span class="required">*</span></label>
+              <input type="tel" id="eb-phone" placeholder="010-0000-0000" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="eb-form-group">
+              <label for="eb-kakao">카카오톡 아이디 <span class="required">*</span></label>
+              <input type="text" id="eb-kakao" placeholder="카톡 연락처 저장 안 될 시 사용" required>
+            </div>
+            <div class="eb-form-group">
+              <label for="eb-insta">인스타 아이디 (샵 계정) <span class="required">*</span></label>
+              <input type="text" id="eb-insta" placeholder="@계정명" required>
+            </div>
+          </div>
+
+          <!-- 비밀 유지 서약 -->
+          <div class="eb-agreement">
+            <div class="eb-agreement-title">[ 비밀 유지 서약 ]</div>
+            <p class="eb-agreement-text">해당 수업의 모든 내용(영상, 음성, 자료 등)은 저작권법의 보호를 받으며 사전 동의없는 녹화, 녹음, 캡쳐, 복제, 외부공유, 재배포를 금지합니다. 이를 위반할 시 민·형사상 법적 책임이 따를 수 있습니다.</p>
+            <label class="eb-checkbox">
+              <input type="checkbox" id="eb-nda" required>
+              <span>동의합니다</span>
+            </label>
+          </div>
+
+          <!-- 개인정보 수집 및 이용 동의 -->
+          <div class="eb-agreement">
+            <div class="eb-agreement-title">[ 개인정보 수집 및 이용 동의 ]</div>
+            <p class="eb-agreement-text">수집 항목: 이름, 연락처 | 수집 목적: 수강 안내 및 상담 | 보유 기간: 수강 종료 후 파기</p>
+            <label class="eb-checkbox">
+              <input type="checkbox" id="eb-privacy" required>
+              <span>동의합니다</span>
+            </label>
+          </div>
+
+          <!-- 수업료 안내 + 입금자명 -->
+          <div class="eb-payment-info">
+            <div class="eb-payment-badge">수업료 안내</div>
+            <p class="eb-payment-price">27만원 <span>(얼리버드 할인가)</span></p>
+            <p class="eb-payment-account">입금 계좌: 카카오뱅크 3333-03-9903637 송서희</p>
+          </div>
+          <div class="eb-form-group">
+            <label for="eb-depositor">입금자명 <span class="required">*</span></label>
+            <input type="text" id="eb-depositor" placeholder="입금 완료 후 입금자명을 입력해주세요" required>
+          </div>
+
+          <button type="submit" class="btn-primary btn-pulse earlybird-submit">얼리버드 신청 완료하기</button>
+        </form>
+        <p class="earlybird-note">입금 확인 후 순차적으로 단톡방 입장 안내 도와드리겠습니다 · 30명 마감 시 자동 종료</p>
+      </div>
+
+      <!-- 마감 시 표시 -->
+      <div id="earlybird-closed" class="earlybird-closed">
+        <div class="earlybird-closed-badge">SOLD OUT</div>
+        <h3>얼리버드 신청이 마감되었습니다</h3>
+        <p>일반 수강 상담은 아래에서 신청해주세요</p>
+      </div>
     </div>
   </section>
 
@@ -430,10 +524,11 @@
 
   <!-- Floating CTA (모바일) -->
   <div class="floating-cta" id="floating-cta">
-    <a href="#cta" class="btn-primary">수강 상담 신청하기</a>
+    <a href="#earlybird" class="btn-primary">얼리버드 특가 신청하기</a>
   </div>
 
   <script src="js/scroll-animation.js"></script>
   <script src="js/form-handler.js"></script>
+  <script src="js/earlybird.js"></script>
 </body>
 </html>
