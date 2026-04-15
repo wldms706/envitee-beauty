@@ -1205,6 +1205,15 @@ section {
   margin-bottom: var(--spacing-lg);
 }
 
+.footer-services a {
+  color: var(--gray-dark);
+  transition: color 0.2s ease;
+}
+
+.footer-services a:hover {
+  color: var(--primary-pink-light);
+}
+
 .footer-links {
   display: flex;
   justify-content: center;
