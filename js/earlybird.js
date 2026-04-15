@@ -10,6 +10,9 @@ const EARLYBIRD_SHEET_URL = 'https://script.google.com/macros/s/AKfycbzPPsWvjMfj
 
 const EB_LIMIT = 30;
 
+// ⬇️ 얼리버드 강제 마감 플래그 (true면 서버 카운트 상관없이 마감 표시)
+const EB_FORCE_CLOSED = true;
+
 // ── DOM 요소 ──
 function getEls() {
   return {
@@ -117,11 +120,17 @@ async function submitEarlybird(formData) {
 document.addEventListener('DOMContentLoaded', () => {
   const els = getEls();
 
-  // 1. 페이지 로드 시 카운트 가져오기
-  fetchCount();
+  // 강제 마감 상태
+  if (EB_FORCE_CLOSED) {
+    updateCountUI(EB_LIMIT);
+    showClosed();
+  } else {
+    // 1. 페이지 로드 시 카운트 가져오기
+    fetchCount();
 
-  // 2. 30초마다 카운트 자동 새로고침 (라이브 중 실시간 반영)
-  setInterval(fetchCount, 30000);
+    // 2. 30초마다 카운트 자동 새로고침
+    setInterval(fetchCount, 30000);
+  }
 
   // 3. 폼 제출 처리
   if (els.form) {
