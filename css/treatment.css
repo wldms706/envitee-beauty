@@ -130,94 +130,64 @@
   font-weight: var(--weight-bold);
 }
 
-/* ===== Gallery (Bento-style) ===== */
-.tr-gallery {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-auto-rows: 140px;
-  gap: 12px;
-  max-width: 1000px;
-  margin: 0 auto var(--spacing-xl);
+/* ===== Gallery Slider (무한 슬라이드) ===== */
+.tr-slider-wrap {
+  overflow: hidden;
+  margin: 0 -1rem var(--spacing-xl);
 }
 
-.tr-gallery-item {
+.tr-slider-track {
+  display: flex;
+  gap: var(--spacing-sm);
+  width: max-content;
+}
+
+.tr-slide-left {
+  animation: trSlideLeft 35s linear infinite;
+}
+
+.tr-slide-right {
+  animation: trSlideRight 40s linear infinite;
+}
+
+.tr-slider-track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes trSlideLeft {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes trSlideRight {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+
+.tr-slide {
+  flex-shrink: 0;
+  width: 280px;
   border-radius: 20px;
   overflow: hidden;
-  background: var(--gray-light);
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  position: relative;
-  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.tr-gallery-item::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, rgba(0,0,0,0.15) 0%, transparent 40%);
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  z-index: 1;
-  pointer-events: none;
+.tr-service-alt .tr-slide {
+  box-shadow: 0 4px 20px rgba(255, 20, 147, 0.08);
 }
 
-.tr-gallery-item:hover {
-  transform: translateY(-4px) scale(1.02);
-  box-shadow: 0 20px 40px var(--shadow-pink);
-  z-index: 2;
+.tr-slide:hover {
+  transform: scale(1.04);
+  box-shadow: 0 10px 30px var(--shadow-pink);
 }
 
-.tr-gallery-item:hover::after {
-  opacity: 1;
-}
-
-.tr-gallery-item img {
+.tr-slide img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
-  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.tr-gallery-item:hover img {
-  transform: scale(1.08);
-}
-
-/* 벤토 레이아웃: 다양한 크기로 시각적 재미 */
-.tr-gallery-item:nth-child(1) {
-  grid-column: span 2;
-  grid-row: span 2;
-}
-.tr-gallery-item:nth-child(2) {
-  grid-column: span 2;
-  grid-row: span 1;
-}
-.tr-gallery-item:nth-child(3) {
-  grid-column: span 1;
-  grid-row: span 1;
-}
-.tr-gallery-item:nth-child(4) {
-  grid-column: span 1;
-  grid-row: span 2;
-}
-.tr-gallery-item:nth-child(5) {
-  grid-column: span 2;
-  grid-row: span 1;
-}
-.tr-gallery-item:nth-child(6) {
-  grid-column: span 2;
-  grid-row: span 2;
-}
-.tr-gallery-item:nth-child(7) {
-  grid-column: span 1;
-  grid-row: span 1;
-}
-.tr-gallery-item:nth-child(8) {
-  grid-column: span 1;
-  grid-row: span 1;
-}
-.tr-gallery-item:nth-child(9) {
-  grid-column: span 2;
-  grid-row: span 1;
+  aspect-ratio: 1 / 1;
 }
 
 /* ===== Book Button ===== */
@@ -303,30 +273,15 @@
 }
 
 /* ===== Responsive ===== */
-/* 모바일 갤러리: 2열 벤토 */
 @media (max-width: 767px) {
-  .tr-gallery {
-    grid-template-columns: repeat(2, 1fr);
-    grid-auto-rows: 110px;
-    gap: 10px;
+  .tr-slide {
+    width: 220px;
   }
-  .tr-gallery-item:nth-child(1) {
-    grid-column: span 2;
-    grid-row: span 2;
-  }
-  .tr-gallery-item:nth-child(2) { grid-column: span 1; grid-row: span 1; }
-  .tr-gallery-item:nth-child(3) { grid-column: span 1; grid-row: span 1; }
-  .tr-gallery-item:nth-child(4) { grid-column: span 2; grid-row: span 1; }
-  .tr-gallery-item:nth-child(5) { grid-column: span 1; grid-row: span 2; }
-  .tr-gallery-item:nth-child(6) { grid-column: span 1; grid-row: span 1; }
-  .tr-gallery-item:nth-child(7) { grid-column: span 1; grid-row: span 1; }
-  .tr-gallery-item:nth-child(8) { grid-column: span 2; grid-row: span 1; }
-  .tr-gallery-item:nth-child(9) { grid-column: span 2; grid-row: span 1; }
 }
 
 @media (min-width: 768px) {
-  .tr-gallery {
-    grid-auto-rows: 160px;
+  .tr-slide {
+    width: 300px;
   }
 
   .tr-why-grid {
@@ -335,8 +290,8 @@
 }
 
 @media (min-width: 1024px) {
-  .tr-gallery {
-    grid-auto-rows: 180px;
+  .tr-slide {
+    width: 320px;
   }
 
   .tr-why-grid {
